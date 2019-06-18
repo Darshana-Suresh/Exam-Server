@@ -1,0 +1,29 @@
+<?php
+
+session_start();
+$_SESSION["prev_flag"]=1;
+$cnt=$_SESSION["count"]-1;
+if($_SESSION["q_crct"][$cnt]==1)
+{
+    --$_SESSION["mark"];
+    --$_SESSION["attempt"];
+    $_SESSION["q_crct"][$cnt]=0;
+}
+elseif($_SESSION["q_att"][$cnt]==1)
+{
+    --$_SESSION["attempt"];
+    $_SESSION["q_att"][$cnt]=0;
+    //array_pop($_SESSION["wrong"][$cnt]);
+    //array_pop($_SESSION["wrongans"][$cnt]);
+}
+if($_SESSION["count"]==1)
+    {
+        $_SESSION["count"]--;
+        //echo "<script>alert('There is no previous question');</script>";
+    }
+else
+{
+    $_SESSION["count"]=$_SESSION["count"]-2;
+}
+header("location:question.php");
+?>
